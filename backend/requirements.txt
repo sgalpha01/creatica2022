@@ -9,3 +9,5 @@ aiofiles==0.8.0
 NudeNet @ git+https://github.com/sgalpha101/NudeNet.git
 pathlib==1.0.1
 gdown==4.4.0
+aiofiles==0.6.0
+python-multipart==0.0.5
