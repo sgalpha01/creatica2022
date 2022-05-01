@@ -40,9 +40,6 @@
         <!--Browser controls-->
         <ul class="nav bg-dark nav-tabs sticky-top nav-fill" style="position: absolute; width: 100%;">
             <li class="nav-item">
-              <a class="nav-link active text-light Home" aria-current="page" href="/home">Home</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link text-light Custom" href="/">Custom</a>
             </li>
             <li class="nav-item">
@@ -105,11 +102,6 @@
             }
         });
         var title = document.getElementsByTagName("title")[0].innerHTML;
-        //For Website-1
-        if (title == "Home"){
-            $('li.nav-item a.nav-link').removeClass('active');
-            $('li.nav-item a.nav-link.Home').toggleClass('active text-dark')
-        }
         //For Website-1
         if (title == "Website-1"){
             $('li.nav-item a.nav-link').removeClass('active');
