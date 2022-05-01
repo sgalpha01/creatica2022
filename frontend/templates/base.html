@@ -40,16 +40,7 @@
         <!--Browser controls-->
         <ul class="nav bg-dark nav-tabs sticky-top nav-fill" style="position: absolute; width: 100%;">
             <li class="nav-item">
-                <a class="nav-link text-light Custom" href="/">Custom</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-light Website-1" href="/website-1">Website-1</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-light Website-2" href="/website-2">Website-2</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-light Website-3" href="/website-3">Website-3</a>
+                <a class="nav-link text-light Custom" href="/">Nudity Detector</a>
             </li>
             <li class="dropdown mega-dropdown nav-item btn-sm btn-dark m-0 p-0" aria-expanded="false" style="position: relative;">
                 <a class="text-light" href="javascript:;">
@@ -102,21 +93,6 @@
             }
         });
         var title = document.getElementsByTagName("title")[0].innerHTML;
-        //For Website-1
-        if (title == "Website-1"){
-            $('li.nav-item a.nav-link').removeClass('active');
-            $('li.nav-item a.nav-link.Website-1').toggleClass('active text-dark')
-        }
-        //For Website-2
-        if (title == "Website-2"){
-            $('li.nav-item a.nav-link').removeClass('active');
-            $('li.nav-item a.nav-link.Website-2').toggleClass('active text-dark')
-        }
-        //For Website-3
-        if (title == "Website-3"){
-            $('li.nav-item a.nav-link').removeClass('active');
-            $('li.nav-item a.nav-link.Website-3').toggleClass('active text-dark')
-        }
         //For Custom
         if (title == "Custom"){
             $('li.nav-item a.nav-link').removeClass('active');

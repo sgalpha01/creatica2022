@@ -1,8 +1,8 @@
 from pathlib import Path, PurePath
-
+import pathlib
 from nudenet import NudeClassifier, NudeDetector
 
-workdir = Path(__file__).resolve().parent
+workdir = pathlib.Path(__file__).resolve().parent
 imgdir = PurePath.joinpath(workdir, ".image_cache")
 Path(imgdir).mkdir(exist_ok=True)
 images = [p for p in imgdir.iterdir() if p.is_file()]

@@ -17,13 +17,13 @@ app.mount("/static", StaticFiles(directory="../frontend/static"), name="static")
 
 @app.get("/")
 def form_post(request: Request):
-    result = "Type a number"
+    result = "Results will reflect here"
     return templates.TemplateResponse('Custom.html', context={'request': request, 'result': result})
 
 
 @app.post("/")
 def form_post(request: Request, result: str = Form(...)):
-    scan_url(result)
+    result = scan_url(result)
     return templates.TemplateResponse('Custom.html', context={'request': request, 'result': result})
 
 # Website-1
@@ -50,6 +50,7 @@ def scan_url(url: str):
     get_image_list(url)
     response = get_score(url)
     if response:
+        print(response)
         return response
     raise HTTPException(400, "Something Went Wrong!")
 
