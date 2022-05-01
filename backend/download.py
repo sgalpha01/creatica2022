@@ -22,7 +22,4 @@ def download_image(url, file_path, file_name):
 def download_images_function(urls):
     for url in urls:
         file_name = str(id(url))
-        try:
-            download_image(url, 'backend/temp_images/', file_name)
-        except:
-            pass
+        download_image(url, '../backend/temp_images/', file_name)
