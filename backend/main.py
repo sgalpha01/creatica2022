@@ -1,12 +1,13 @@
 import uvicorn
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
 from image_downloader import get_image_list
-from nsfw_detector import results
+from nsfw_detector import get_score
+from model import NSFW_score
 
 app = FastAPI()
 app.add_middleware(CORSMiddleware)
@@ -38,12 +39,14 @@ async def hello_world3(request: Request):
     return templates.TemplateResponse("website-3.html", {"request": request})
 
 
-@app.post("/api/url/{url}")
+@app.post("/api/url/", response_class=NSFW_score)
 def scan_url(url: str):
     # retrieves/downloads images from a website
     get_image_list(url)
-
-    return results
+    response = get_score(url)
+    if response:
+        return response
+    raise HTTPException(400, "Something Went Wrong!")
 
 
 if __name__ == "__main__":
