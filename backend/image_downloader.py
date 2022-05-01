@@ -1,5 +1,6 @@
 import urllib.request
 from pathlib import Path, PurePath
+import os
 
 import requests
 from bs4 import BeautifulSoup
@@ -24,16 +25,11 @@ def get_image_list(url):
 
 
 def download_image(url, file_path, file_name):
-    full_path = file_path + file_name + ".png"
+    full_path = os.path.join(file_path, (file_name + ".png"))
     urllib.request.urlretrieve(url, full_path)
 
 
 def download_images_function(urls):
     for url in urls:
         file_name = str(id(url))
-        download_image(url, imgdir, file_name)
-
-
-get_image_list(
-    "https://stackoverflow.com/questions/292357/what-is-the-difference-between-git-pull-and-git-fetch"
-)
+        download_image(url, str(imgdir), file_name)
