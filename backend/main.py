@@ -8,8 +8,8 @@ from download import get_image_list
 
 app = FastAPI()
 app.add_middleware(CORSMiddleware)
-templates = Jinja2Templates(directory="../templates")
-app.mount("/static", StaticFiles(directory="../static"),name="static")
+templates = Jinja2Templates(directory="../frontend/templates")
+app.mount("/static", StaticFiles(directory="../frontend/static"),name="static")
 
 #retrieves/downloads images from a website
 def request_download_image(url):
@@ -19,6 +19,11 @@ def request_download_image(url):
 @app.get('/home', response_class=HTMLResponse)
 async def hello_world(request: Request):
     return templates.TemplateResponse("Home.html", {"request" : request})
+
+#Custom url
+@app.get('/custom', response_class=HTMLResponse)
+async def hello_world(request: Request):
+    return templates.TemplateResponse("Custom.html", {"request" : request})
 
 #Website-1
 @app.get('/website-1', response_class=HTMLResponse)
