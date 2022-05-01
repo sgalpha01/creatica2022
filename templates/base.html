@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+    
+    <!--Head-->
+    
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <!--links-->
+        <link rel="stylesheet" src="style.css" >
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <!--Ajax-script-->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    </head>
+
+    <!--Body-->
+    
+    <body>
+        <!--Style-->
+        <style>
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                right: 0;
+                background-color: #f9f9f9;
+                min-width: 350px;
+                min-height: 350px;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index: 1;
+            }
+            .dropdown-content-open {
+            display: block;
+            }
+        </style>
+
+        <!--Browser controls-->
+        <ul class="nav bg-dark nav-tabs sticky-top nav-fill" style="position: absolute; width: 100%;">
+            <li class="nav-item">
+              <a class="nav-link active text-light Home" aria-current="page" href="/home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-light Website-1" href="/website-1">Website-1</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-light Website-2" href="/website-2">Website-2</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-light Website-3" href="/website-3">Website-3</a>
+            </li>
+            <li class="dropdown mega-dropdown nav-item btn-sm btn-dark m-0 p-0" aria-expanded="false" style="position: relative;">
+                <a class="text-light" href="javascript:;">
+
+                <img src="{{url_for('static', path='/extension-icon.svg')}}",class="p-2", style="width: 2rem; filter: invert(100%);">
+                </a>
+                <ul class="dropdown-content text-dark" style="list-style-type: none;">
+                    <li class="p-2" style="text-decoration: none;">
+                        <h2>Scan This Page</h2>
+                        <br>
+                        <button class="text-centre btn btn-success">Scan</button>
+                        <h3 class="text-start">
+                            Results : 
+                        </h3>
+                        <ol class="text-start fs-5">
+                            <li>
+                                <p>Suitable for viewing</p>
+                            </li>
+                            
+                        </ol>
+                        <div class="card">
+                            <h5 class="card-header text-start">Rate this website</h5>
+                            <div class="card-body m-2">
+                                <p><span class="float-start">Poor</span><span class="float-end">Excellent</span></p>
+                                <input type="range" class="form-range" min="0" max="5" step="0.5" id="customRange3">
+                              <a href="#" class="btn btn-primary">Submit</a>
+                            </div>
+                          </div>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <!--Website content-->
+        {% block content %}
+        {% endblock %}
+    </body>
+    <!--Scripts-->
+    <script>
+        $('li.dropdown.mega-dropdown a').on('click', function (event) {
+            $('ul.dropdown-content').toggleClass('dropdown-content-open');
+        });
+        $('body').on('click', function (e) {
+            if (!$('li.dropdown.mega-dropdown').is(e.target) 
+                && $('li.dropdown.mega-dropdown').has(e.target).length === 0 
+                && $('.open').has(e.target).length === 0
+            ) {
+                $('ul.dropdown.mega-dropdown').removeClass('open');
+            }
+        });
+        var title = document.getElementsByTagName("title")[0].innerHTML;
+        //For Website-1
+        if (title == "Home"){
+            $('li.nav-item a.nav-link').removeClass('active');
+            $('li.nav-item a.nav-link.Home').toggleClass('active text-dark')
+        }
+        //For Website-1
+        if (title == "Website-1"){
+            $('li.nav-item a.nav-link').removeClass('active');
+            $('li.nav-item a.nav-link.Website-1').toggleClass('active text-dark')
+        }
+        //For Website-2
+        if (title == "Website-2"){
+            $('li.nav-item a.nav-link').removeClass('active');
+            $('li.nav-item a.nav-link.Website-2').toggleClass('active text-dark')
+        }
+        //For Website-3
+        if (title == "Website-3"){
+            $('li.nav-item a.nav-link').removeClass('active');
+            $('li.nav-item a.nav-link.Website-3').toggleClass('active text-dark')
+        }
+    </script>
+    <!--Bootstrap-scripts-->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+</html>
