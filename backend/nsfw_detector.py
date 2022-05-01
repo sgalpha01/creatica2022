@@ -14,7 +14,7 @@ classifier = NudeClassifier()
 detector = NudeDetector()
 
 
-def get_score(url):
+def get_score(url=""):
     response = {url: []}
     for index, img in enumerate(images):
         basic_info = classifier.classify(str(img))
