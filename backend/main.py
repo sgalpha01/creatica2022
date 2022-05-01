@@ -1,5 +1,6 @@
+import re
 import uvicorn
-from fastapi import FastAPI, Request, HTTPException
+from fastapi import FastAPI, Request, HTTPException, Form
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
@@ -14,12 +15,16 @@ app.add_middleware(CORSMiddleware)
 templates = Jinja2Templates(directory="../frontend/templates")
 app.mount("/static", StaticFiles(directory="../frontend/static"), name="static")
 
+@app.get("/")
+def form_post(request: Request):
+    result = "Type a number"
+    return templates.TemplateResponse('Custom.html', context={'request': request, 'result': result})
 
-# Landing Page
-@app.get("/", response_class=HTMLResponse)
-async def hello_world(request: Request):
-    return templates.TemplateResponse("Custom.html", {"request": request})
 
+@app.post("/")
+def form_post(request: Request, result: str = Form(...)):
+    scan_url(result)
+    return templates.TemplateResponse('Custom.html', context={'request': request, 'result': result})
 
 # Website-1
 @app.get("/website-1", response_class=HTMLResponse)

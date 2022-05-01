@@ -32,4 +32,7 @@ def download_image(url, file_path, file_name):
 def download_images_function(urls):
     for url in urls:
         file_name = str(id(url))
-        download_image(url, str(imgdir), file_name)
+        try:
+            download_image(url, str(imgdir), file_name)
+        except:
+            pass
