@@ -18,7 +18,8 @@ def get_score(url=""):
     response = {url: []}
     for index, img in enumerate(images):
         basic_info = classifier.classify(str(img))
-        basic_score = basic_info[str(img)]["safe"]
+        for k, _ in basic_info.items():
+            basic_score = basic_info[k]["safe"]
         detailed_info = detector.detect(str(img))
         response[url].append(
             {index: {"basic_score": basic_score, "detailed_score": detailed_info}}
