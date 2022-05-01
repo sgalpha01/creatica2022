@@ -31,4 +31,9 @@ def download_image(url, file_path, file_name):
 def download_images_function(urls):
     for url in urls:
         file_name = str(id(url))
-        download_image(url, "imgdir", file_name)
+        download_image(url, imgdir, file_name)
+
+
+get_image_list(
+    "https://stackoverflow.com/questions/292357/what-is-the-difference-between-git-pull-and-git-fetch"
+)
