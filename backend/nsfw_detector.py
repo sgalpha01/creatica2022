@@ -1,6 +1,6 @@
 from pathlib import Path, PurePath
-from nudenet import NudeClassifier, NudeDetector
 
+from nudenet import NudeClassifier, NudeDetector
 
 workdir = Path(__file__).resolve().parent
 imgdir = PurePath.joinpath(workdir, ".image_cache")
