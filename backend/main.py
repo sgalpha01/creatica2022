@@ -44,7 +44,7 @@ async def hello_world3(request: Request):
     return templates.TemplateResponse("website-3.html", {"request": request})
 
 
-@app.post("/api/url/", response_class=NSFW_score)
+@app.post("/api/url/")
 def scan_url(url: str):
     # retrieves/downloads images from a website
     get_image_list(url)
